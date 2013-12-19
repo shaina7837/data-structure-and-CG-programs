@@ -1,0 +1,48 @@
+#include "GL/glut.h"
+#include <cmath>
+
+void render(float x, float y)
+{
+    glClearColor(1.0, 1.0, 1.0, 1.0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    glColor3f(0.0, 0.0, 0.0);
+    glOrtho(-1.0, 1.0, -1.0, 1.0, -1.0, 1.0);
+    glPointSize(2.0f);
+    glBegin(GL_POINTS);
+        glVertex2f(x,y);    
+	
+}
+void line()
+{
+   float x=0; float r=0.5; float y=r;
+ do
+ {
+  render(x,y);
+  render(x,-y);
+render(-x,y);
+render(-x,-y);
+render(y,x);
+render(-y,x);
+render(y,-x);
+render(-y,-x);
+
+ x=x+0.001;
+y= sqrt(r*r-x*x);
+}while(x<=y);
+    
+   glEnd();
+   glFlush();
+}
+
+int main(int argc, char** argv)
+{
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_SINGLE);
+    glutInitWindowSize(300,300);
+    glutInitWindowPosition(100,100);
+    glutCreateWindow("OpenGL - Sec window demo");
+    glutDisplayFunc(line);
+    glutMainLoop();    
+    return 0;
+}
+
