@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="1200" height="200"></canvas>
+    <script>
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+      var centerX = canvas.width / 2;
+      var centerY = canvas.height / 2;
+      var radius = 1;
+     
+      function pixel(x, y)
+      {
+      context.beginPath();
+      context.arc(centerX+x, centerY-y, radius, 2 * Math.PI, false);
+      context.fillStyle = 'green';
+      context.fill();
+      context.lineWidth = 1;
+      context.strokeStyle = 'green';
+      context.stroke();
+      }
+var r=60; var x=0; var y=r, p=3-2*r;
+do
+{
+if(p<0)
+{p=p+4*x+6; }
+else
+{p=p+4*(x-y)+10
+y=Math.sqrt(r*r-x*x);}
+x=x+1;
+pixel(x,y);
+pixel(x,-y);
+pixel(-x,y);
+pixel(-x,-y);
+pixel(y,x);
+pixel(-y,x);
+pixel(y,-x);
+pixel(-y,-x);
+}while(x<=y);
+</script>
+  </body>
+</html>

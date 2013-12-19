@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="1200" height="200"></canvas>
+    <script>
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+      var centerX = canvas.width / 2;
+      var centerY = canvas.height / 2;
+      var radius = 1;
+     
+      function pixel(x, y)
+      {
+      context.beginPath();
+      context.arc(centerX+x, centerY-y, radius, 2 * Math.PI, false);
+      context.fillStyle = 'green';
+      context.fill();
+      context.lineWidth = 1;
+      context.strokeStyle = 'green';
+      context.stroke();
+      }
+var rx=40, ry=70, x=0, y=ry, p=(rx*rx)/4+(ry*ry)-(ry*rx*rx);
+do
+{
+if(p<0)
+{p=p+2*x*ry*ry+3*ry*ry; }
+else
+{p=p+2*x*ry*ry-2*y*rx*rx+3*ry*ry+2*rx*rx
+y=Math.sqrt(ry*ry-x*x);}
+x=x+1;
+pixel(x,y);
+pixel(x,-y);
+pixel(-x,y);
+pixel(-x,-y);
+}
+while(ry*ry*x < rx*rx*y);
+
+p=(x+1/2)*(x+1/2)*ry*ry + (y-1)*(y-1)*rx*rx - rx*rx*ry*ry;
+do
+{
+if(p<0)
+{ p=p + 2*x*ry*ry - 2*y*rx*rx + 2*ry*ry + 3*rx*rx;
+x=Math.sqrt(rx*rx-y*y);
+}
+y=y-1;
+pixel(x,y);
+pixel(-x,y);
+pixel(x,-y);
+pixel(-x,-y);
+}while(y>=0);
+</script>
+  </body>
+</html>
